@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Heveltica-Neue';
+    src: url('../assets/fonts/Helvetica-Neue.otf');
+}
+body {
+    font-family: 'Heveltica-Neue';
+    background-color: #f2f2f2;
+}
+
+nav{
+    background-color: #fff;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav img{
+    height: 80px;
+    width: 80px;
+}
+
+nav div a{
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    margin: 0 20px;
+    letter-spacing: 1.5px;
+}
+
+nav div a:hover{
+    text-decoration: underline;
+}
+
+nav div p{
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    margin: 0 20px;
+    cursor : pointer;
+    letter-spacing: 1.5px;
+}
+
+nav div p:hover{
+    text-decoration: underline;
+}
+
+
