@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Heveltica-Neue';
+    src: url('../assets/fonts/Helvetica-Neue.otf');
+}
+
+nav{
+    background-color: #fff;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Heveltica-Neue';
+}
+
+nav img{
+    height: 80px;
+    width: 80px;
+}
+
+nav div a{
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    margin: 0 20px;
+    letter-spacing: 1.5px;
+}
+
+nav div a:hover{
+    text-decoration: underline;
+}
+
+nav div p{
+    text-decoration: none;
+    color: #000;
+    font-size: 15px;
+    margin: 0 20px;
+    letter-spacing: 1.5px;
+}
+
+nav div p:hover{
+    text-decoration: underline;
+}
