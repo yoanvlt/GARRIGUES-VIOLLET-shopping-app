@@ -2,10 +2,10 @@ const url = "http://localhost:3000/"
 
 const btn =   document.querySelector('button');
 
-btn.addEventListener('click', getSneakers);
+btn.addEventListener('click', getClothes);
 
-function getSneakers() {
-    fetch(url + 'sneakers')
+function getClothes() {
+    fetch(url + 'clothes')
     .then(response => {
         return response.json();
     })

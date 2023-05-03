@@ -11,18 +11,18 @@ app.listen(port, () => {
 
 app.get('/sneaker/:id', (req, res) => {
   const id = req.params.id;
-  const sneakers = data.sneakers;
+  const clothes = data.clothes;
 
-  const sneaker = sneakers.find((sneaker) => {
+  const sneaker = clothes.find((sneaker) => {
     return sneaker.id == id;
   }
   );
   res.json(sneaker);
 });
 
-app.get('/sneakers', (req, res) => {
-  const sneakers = data.sneakers;
-  res.json(sneakers);
+app.get('/clothes', (req, res) => {
+  const clothes = data.clothes;
+  res.json(clothes);
 }
 
 );
