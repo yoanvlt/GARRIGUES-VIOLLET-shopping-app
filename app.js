@@ -6,7 +6,7 @@ const data = require('./data.json');
 app.use(express.static('frontend'));
 
 app.listen(port, () => {
-  console.log('Serveur en écoute sur le port ${port}');
+  console.log('Serveur en écoute sur le port '+ port,'!');
 });
 
 app.get('/sneaker/:id', (req, res) => {
@@ -24,7 +24,6 @@ app.get('/clothes', (req, res) => {
   const clothes = data.clothes;
   res.json(clothes);
 }
-
 );
 
 app.get('/', (req, res) => {
