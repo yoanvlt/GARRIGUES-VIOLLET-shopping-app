@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'Heveltica-Neue';
+    src: url('../assets/fonts/Helvetica-Neue.otf');
+}
+
+.footer1{
+    position: absolute;
+    background-color: #161618;
+    height: 25vh;
+    display: flex;
+    width: 50%;
+    left: 0;
+}
+
+.footer2{
+    position: absolute;
+    background-color: #161618;
+    height: 25vh;
+    display: flex;
+    width: 50%;
+    justify-content: end;
+    left: 50%;
+}
+
+.footer3{
+    position: absolute;
+    background-color: #161618;
+    height: 7vh;
+    display: flex;
+    width: 100%;
+    margin-top: 25vh;
+    border-top: white solid 1px;
+    align-items: center;
+    color: white;
+}
+
+.titre-footer{
+    font-size: 2.2em;
+}
+
+.texte-footer{
+    padding-left: 3vw;
+    padding-top: 5vh;
+    color: white;
+}
+
+.soustitre-footer{
+    font-size: 1em;
+    padding-top: 3vh;
+    width: 280px;
+}
+
+.follow{
+    margin-top: 11vh;
+    margin-right: 4vw;
+    color: white;
+    text-align: center;
+}
+
+.texte-footer2{
+    margin-left: 20px;
+}
+
+.call-us{
+    margin-top: 11vh;
+    margin-right: 6vw;
+    color: white;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .footer1{
+        display: none;
+    }
+
+    .footer2{
+        width: 100vw;
+        left: 0;
+        height: 30%;
+    }
+
+    .follow{
+        margin-right: 20vw;
+    }
+
+    .footer3{
+        position: absolute;
+        width: 100%;
+        height: 12vh;
+        left: 0;
+    }
+}

@@ -4,3 +4,34 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Heveltica-Neue';
+    background-color: #fff;
+}
+
+#medley-images {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 75vh;
+    width: 75vw;
+    margin-left: 12.5vw;
+    margin-top: 55px;
+}
+
+#medley-images img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    padding-left: 10px;
+}
+
+footer{
+    margin-top: 11vh;
+}
+
+@media screen and (max-width: 768px) {
+    #medley-div-2 {
+        display: none; 
+    }
+}

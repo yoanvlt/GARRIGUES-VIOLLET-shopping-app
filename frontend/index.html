@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
     <title>Home</title>
 </head>
 <body>
@@ -22,7 +23,64 @@
             <a href="cart.html">CART</a>
         </div>
     </nav>
-    <button>Get Data</button>
+
+    <section id="medley-images">
+        <div id="medley-div-1">
+            <img src="assets/medley/medley-1.png" alt="">
+        </div>
+        <div id="medley-div-2">
+            <img src="assets/medley/medley-2.png" alt="">
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer1">
+            <div class="texte-footer">
+            <p class="titre-footer">STÜSSY</p>
+            <p class="soustitre-footer">Unofficial Website of Stüssy. Worldwide since 1980.</p>
+        </div>
+    </div>
+        <div class="footer2">
+            <div class="follow">
+                <p class="follow-titre">SUIVEZ-NOUS :</p>
+                <div class="follow-icon">
+                    <a href=""><img src="assets/logo/facebook.png" alt="facebook"></a>
+                    <a href=""><img src="assets/logo/instagram.png" alt="instagram"></a>
+                    <a href=""><img src="assets/logo/twitter.png" alt="twitter"></a>
+                </div>
+            </div>
+            <div class="call-us">
+                <p class="callus-titre">NOUS CONTACTER :</p>
+                <p>support@stussy.com</p>
+            </div>
+        </div>
+        <div class="footer3">
+            <p class="texte-footer2"> © 2023 STÜSSY</p>
+        </div>
+    </footer>
+
+    <div id="clothes-container"></div>
     <script src="script/index.js"></script>
 </body>
+<script>
+var panier = document.querySelector('.panier');
+var menu = document.querySelector('.menu');
+
+panier.addEventListener('mouseover', function() {
+   menu.style.display = 'block';
+});
+
+panier.addEventListener('mouseout', function(e) {
+   if (!e.relatedTarget || !menu.contains(e.relatedTarget)) {
+      menu.style.display = 'none';
+   }
+});
+
+menu.addEventListener('mouseout', function(e) {
+   if (!e.relatedTarget || !panier.contains(e.relatedTarget)) {
+      menu.style.display = 'none';
+   }
+});
+
+</script>
 </html>
