@@ -3,3 +3,22 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    font-family: 'Heveltica-Neue';
+    background-color: #fff;
+    letter-spacing: 1.5px;
+}
+
+#categories-shop {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 11px;
+}
+
+#categories-shop p {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    margin: 0 10px;
+}

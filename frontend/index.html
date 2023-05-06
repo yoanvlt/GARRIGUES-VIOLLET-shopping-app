@@ -62,25 +62,4 @@
     <div id="clothes-container"></div>
     <script src="script/index.js"></script>
 </body>
-<script>
-var panier = document.querySelector('.panier');
-var menu = document.querySelector('.menu');
-
-panier.addEventListener('mouseover', function() {
-   menu.style.display = 'block';
-});
-
-panier.addEventListener('mouseout', function(e) {
-   if (!e.relatedTarget || !menu.contains(e.relatedTarget)) {
-      menu.style.display = 'none';
-   }
-});
-
-menu.addEventListener('mouseout', function(e) {
-   if (!e.relatedTarget || !panier.contains(e.relatedTarget)) {
-      menu.style.display = 'none';
-   }
-});
-
-</script>
 </html>
