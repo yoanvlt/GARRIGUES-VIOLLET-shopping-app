@@ -9,22 +9,31 @@ app.listen(port, () => {
   console.log('Serveur en écoute sur le port '+ port,'!');
 });
 
-app.get('/sneaker/:id', (req, res) => {
+
+app.get('/shop', (req, res) => {
+  res.sendFile(__dirname + '/frontend/shop.html');
+});
+
+app.get('/shop/:id', (req, res) => {
   const id = req.params.id;
   const clothes = data.clothes;
 
-  const sneaker = clothes.find((sneaker) => {
-    return sneaker.id == id;
+  const stussy = clothes.find((stussy) => {
+    return stussy.id == id;
   }
   );
-  res.json(sneaker);
+  res.json(stussy);
 });
 
-app.get('/clothes', (req, res) => {
-  const clothes = data.clothes;
-  res.json(clothes);
-}
-);
+app.get('/stussy', (req, res) => {
+  const stussy = data.clothes;
+  res.json(stussy);
+});
+
+
+app.get('/cart', (req, res) => {
+  res.sendFile(__dirname + '/frontend/cart.html');
+});
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/frontend/index.html');
