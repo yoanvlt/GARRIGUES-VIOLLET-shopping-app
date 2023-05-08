@@ -12,18 +12,20 @@
 <body>
     <nav>
         <div id="nav-div-1">
-            <a href="shop.html">SHOP</a>
+            <a href="/shop">SHOP</a>
         </div>
         <div id="nav-div-2">
-            <a href="index.html">
+            <a href="/">
             <img src="../assets/logo/logo-stussy.svg"  alt="">
         </a>
         </div>
-        <div id="nav-div-3">
-            <a href="cart.html">CART</a>
+        <div class="header__nav">
+        </div>
+        <div class="header__burger">
+            <a href="">CART</a>
+            <span class="burger__icon"></span>
         </div>
     </nav>
-
     <section id="medley-images">
         <div id="medley-div-1">
             <img src="assets/medley/medley-1.png" alt="">
@@ -58,8 +60,26 @@
             <p class="texte-footer2"> © 2023 STÜSSY</p>
         </div>
     </footer>
-
-    <div id="clothes-container"></div>
-    <script src="script/index.js"></script>
+    <script>
+        const burger = document.querySelector('.header__burger');
+        const menu = document.querySelector('.header__nav');
+        const overlay = document.querySelector('#nav-div-2');
+    
+        burger.addEventListener('mouseenter', () => {
+            menu.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+    
+        overlay.addEventListener('mouseenter', () => {
+            menu.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+    
+        menu.addEventListener('mouseleave', () => {
+            menu.classList.remove('open');
+            overlay.classList.remove('open');
+        });
+    </script>
 </body>
+
 </html>
