@@ -20,45 +20,72 @@
             <img src="../assets/logo/logo-stussy.svg"  alt="">
         </a>
         </div>
-        <div id="nav-div-3">
-            <a href="/cart">CART</a>
+        <div class="header__nav">
+        </div>
+        <div class="header__burger">
+            <p>CART</p>
+            <span class="burger__icon"></span>
         </div>
     </nav>
 
 
     <div id="categories-shop">
-        <div id="categories-shop-div-1">
-            <p>ALL</p>
-        </div>
-        <div id="categories-shop-div-2">
-            <p>TEES</p>
-        </div>
-        <div id="categories-shop-div-3">
-            <p>LONGSLEEVE</p>
-        </div>
-        <div id="categories-shop-div-4">
-            <p>HOODIE</p>
-        </div>
-        <div id="categories-shop-div-5">
-            <p>CREWNECK</p>
-        </div>
-        <div id="categories-shop-div-6">
-            <p>JEANS</p>
-        </div>
-        <div id="categories-shop-div-7">
-            <p>SHORTS</p>
-        </div>
+        <form>
+            <div>
+              <input type="radio" id="option1" name="choix" value="option1" onclick="Display(1)" checked >
+              <label for="option1">ALL</label>
+            </div>
+            <div>
+              <input type="radio" id="option2" name="choix" value="option2" onclick="Display('tee')">
+              <label for="option2">TEE</label>
+            </div>
+            <div>
+              <input type="radio" id="option3" name="choix" value="option3" onclick="Display('longsleeve')">
+              <label for="option3">LONGSLEEVE</label>
+            </div>
+            <div>
+              <input type="radio" id="option4" name="choix" value="option4" onclick="Display('hoodie')">
+              <label for="option4">HOODIE</label>
+            </div>
+            <div>
+              <input type="radio" id="option5" name="choix" value="option5" onclick="Display('crewneck')">
+              <label for="option5">CREWNECK</label>
+            </div>
+            <div>
+              <input type="radio" id="option6" name="choix" value="option6" onclick="Display('jeans')">
+              <label for="option6">JEANS</label>
+            </div>
+            <div>
+              <input type="radio" id="option7" name="choix" value="option7" onclick="Display('shorts')">
+              <label for="option7">SHORTS</label>
+            </div>
+          </form>
+          
     </div>
-
-    <section id="clothes-shop">
-
-    </section>
-
-    <ul id="liste-panier"></ul>
-<div>Nombre d'éléments dans le panier : <span id="nb-elements-panier"></span></div>
 
   <div id="container"></div>
 
     <script src="script/shop.js"></script>
+    
 </body>
+<script>
+    const burger = document.querySelector('.header__burger');
+    const menu = document.querySelector('.header__nav');
+    const overlay = document.querySelector('#nav-div-2');
+
+    burger.addEventListener('mouseenter', () => {
+        menu.classList.toggle('open');
+        overlay.classList.toggle('open');
+    });
+
+    overlay.addEventListener('mouseenter', () => {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+    });
+
+    menu.addEventListener('mouseleave', () => {
+        menu.classList.remove('open');
+        overlay.classList.remove('open');
+    });
+</script>
 </html>

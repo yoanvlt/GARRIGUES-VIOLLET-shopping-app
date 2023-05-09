@@ -102,7 +102,7 @@
             "promo": 0,
             "img_1": "assets/items/10-1.png",
             "img_2": "assets/items/10-2.png",
-            "class": "tee",
+            "class": "longsleeve",
             "description": ""        },
         {
             "id": 10,
@@ -114,7 +114,7 @@
             "promo": 0,
             "img_1": "assets/items/9-1.png",
             "img_2": "assets/items/9-2.png",
-            "class": "Longsleeve",
+            "class": "longsleeve",
             "description": ""       },
         {
             "id": 11,
@@ -126,19 +126,19 @@
             "promo": 0,
             "img_1": "assets/items/11-1.png",
             "img_2": "assets/items/11-2.png",
-            "class": "Longsleeve",
+            "class": "longsleeve",
             "description": ""        },
         {
             "id": 12,
-            "name": "GOLD LION LS TEE",
+            "name": "SPHINX TEE",
             "price": 55,
             "sizes": "S, M, L, XL, XXL",
-            "colors": "WHITE/BLACK/GOLD",
+            "colors": "WHITE/BLACK/MULTICOLOR",
             "materials": "100% COTTON",
             "promo": 0,
             "img_1": "assets/items/12-1.png",
             "img_2": "assets/items/12-2.png",
-            "class": "Longsleeve",
+            "class": "longsleeve",
             "description": ""       },
         {
             "id": 13,
@@ -150,7 +150,7 @@
             "promo": 0,
             "img_1": "assets/items/13-1.png",
             "img_2": "assets/items/13-2.png",
-            "class": "Longsleeve",
+            "class": "longsleeve",
             "description": ""       },
         {
             "id": 14,
@@ -162,7 +162,7 @@
             "promo": 0,
             "img_1": "assets/items/14-1.png",
             "img_2": "assets/items/14-2.png",
-            "class": "Longsleeve",
+            "class": "longsleeve",
             "description": ""       },
         {
             "id": 15,
@@ -174,7 +174,7 @@
             "promo": 0,
             "img_1": "assets/items/15-1.png",
             "img_2": "assets/items/15-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 16,
@@ -186,7 +186,7 @@
             "promo": 0,
             "img_1": "assets/items/16-1.png",
             "img_2": "assets/items/16-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 17,
@@ -198,7 +198,7 @@
             "promo": 0,
             "img_1": "assets/items/17-1.png",
             "img_2": "assets/items/17-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 18,
@@ -210,7 +210,7 @@
             "promo": 0,
             "img_1": "assets/items/18-1.png",
             "img_2": "assets/items/18-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 19,
@@ -222,7 +222,7 @@
             "promo": 0,
             "img_1": "assets/items/19-1.png",
             "img_2": "assets/items/19-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 20,
@@ -234,7 +234,7 @@
             "promo": 0,
             "img_1": "assets/items/20-1.png",
             "img_2": "assets/items/20-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 21,
@@ -246,7 +246,7 @@
             "promo": 0,
             "img_1": "assets/items/21-1.png",
             "img_2": "assets/items/21-2.png",
-            "class": "Crewneck",
+            "class": "crewneck",
             "description": ""       },
         {
             "id": 22,
@@ -258,7 +258,7 @@
             "promo": 0,
             "img_1": "assets/items/22-1.png",
             "img_2": "assets/items/22-2.png",
-            "class": "Crewneck",
+            "class": "crewneck",
             "description": ""       },
         {
             "id": 23,
@@ -270,7 +270,7 @@
             "promo": 0,
             "img_1": "assets/items/23-1.png",
             "img_2": "assets/items/23-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 24,
@@ -282,7 +282,7 @@
             "promo": 0,
             "img_1": "assets/items/24-1.png",
             "img_2": "assets/items/24-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 25,
@@ -294,7 +294,7 @@
             "promo": 0,
             "img_1": "assets/items/25-1.png",
             "img_2": "assets/items/25-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 26,
@@ -306,7 +306,7 @@
             "promo": 0,
             "img_1": "assets/items/26-1.png",
             "img_2": "assets/items/26-2.png",
-            "class": "Hoodie",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 27,
@@ -316,9 +316,9 @@
             "colors": "WHITE/BLACK",
             "materials": "100% COTTON",
             "promo": 0,
-            "img_1": "assets/items/26-1.png",
-            "img_2": "assets/items/26-2.png",
-            "class": "Hoodie",
+            "img_1": "assets/items/27-1.png",
+            "img_2": "assets/items/27-2.png",
+            "class": "hoodie",
             "description": ""       },
         {
             "id": 28,
@@ -330,7 +330,7 @@
             "promo": 0,
             "img_1": "assets/items/28-1.png",
             "img_2": "assets/items/28-2.png",
-            "class": "Jeans",
+            "class": "jeans",
             "description": ""       },
         {
             "id": 29,
@@ -342,7 +342,7 @@
             "promo": 0,
             "img_1": "assets/items/29-1.png",
             "img_2": "assets/items/29-2.png",
-            "class": "Jeans",
+            "class": "jeans",
             "description": ""       },
         {
             "id": 30,
@@ -354,7 +354,7 @@
             "promo": 0,
             "img_1": "assets/items/30-1.png",
             "img_2": "assets/items/30-2.png",
-            "class": "Jeans",
+            "class": "jeans",
             "description": ""       },
         {
             "id": 31,
@@ -366,7 +366,7 @@
             "promo": 0,
             "img_1": "assets/items/31-1.png",
             "img_2": "assets/items/31-2.png",
-            "class": "Jeans",
+            "class": "jeans",
             "description": ""       },
         {
             "id": 32,
@@ -378,7 +378,7 @@
             "promo": 0,
             "img_1": "assets/items/32-1.png",
             "img_2": "assets/items/32-2.png",
-            "class": "Shorts",
+            "class": "shorts",
             "description": ""       }
     ]
 }

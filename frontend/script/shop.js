@@ -1,78 +1,123 @@
-document.addEventListener("DOMContentLoaded", () => {
-  afficherItems();
-});
+function Display(option) {
+  if (option == 1) {
+    displayAllItems();
+}
+  else if (option == "tee") {
+    displayItems(option);
+}
+  else if (option == "longsleeve") {
+    displayItems(option);
+}
+  else if (option == "hoodie") {
+    displayItems(option);
+}
+  else if (option == "crewneck") {
+    displayItems(option);
+}
+  else if (option == "jeans") {
+    displayItems(option);
+}
+  else if (option == "shorts") {
+    displayItems(option);
+}
+}
 
-function afficherItems() {
-  const url = "http://localhost:3000/stussy";
-  const container = document.getElementById("container");
+function displayAllItems() {
+  var container = document.getElementById("container");
 
-  fetch(url)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Erreur lors de la récupération des données.");
-      }
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(item => {
-        const element = document.createElement("div");
-        element.innerHTML = `
-          <h2>${item.name}</h2>
-          <img src="${item.img_1}" alt="${item.name}">
-          <img src="${item.img_2}" alt="${item.name}">
-          <p>${item.description}</p>
-          <p>${item.price} €</p>
-          <button onclick="ajouterAuPanier('${item.name}', ${item.price})">Ajouter au panier</button>
-        `;
-        container.appendChild(element);
+  fetch("http://localhost:3000/stussy")
+    .then((response) => response.json())
+    .then((data) => {
+      container.innerHTML = "";
+      data.forEach((item) => {
+        var div = document.createElement("div");
+        div.className = "item";
+
+        var img = document.createElement("img");
+        img.src = item.img_1; // Initially display img_2
+        img.alt = item.name;
+
+        // Switch to img_2 on mouseover
+        img.addEventListener("mouseover", function() {
+          img.src = item.img_2;
+        });
+
+        // Switch back to img_1 on mouseout
+        img.addEventListener("mouseout", function() {
+          img.src = item.img_1;
+        });
+
+        // Redirect to item details page on click
+        img.addEventListener("click", function() {
+          window.location.href = "http://localhost:3000/stussy/" + item.id;
+        });
+
+        var h2 = document.createElement("h2");
+        h2.textContent = item.name;
+
+        var p = document.createElement("p");
+        p.textContent = item.price + " €";
+
+        div.appendChild(img);
+        div.appendChild(h2);
+        div.appendChild(p);
+
+        container.appendChild(div);
       });
-    })
-    .catch(error => console.log(error.message));
+    });
 }
 
-// Fonction pour ajouter un article au panier
-function ajouterAuPanier(nom, prix) {
-  // Récupérer le panier depuis localStorage
-  const panier = JSON.parse(localStorage.getItem('panier')) || [];
+            
+function displayItems(className) {
+  var container = document.getElementById("container");
+  container.innerHTML = ""; // Effacer le contenu précédent du conteneur
 
-  // Ajouter l'article au panier
-  panier.push({ nom: nom, prix: prix });
-
-  // Enregistrer le panier dans localStorage
-  localStorage.setItem('panier', JSON.stringify(panier));
-
-  // Mettre à jour l'affichage du panier
-  afficherPanier();
+  fetch("http://localhost:3000/stussy")
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach((item) => {
+        if (item.class === className) {
+          var div = document.createElement("div");
+          div.className = "item";
+  
+          var img = document.createElement("img");
+          img.src = item.img_1; // Initially display img_2
+          img.alt = item.name;
+  
+          // Switch to img_1 on mouseover
+          img.addEventListener("mouseover", function() {
+            img.src = item.img_2;
+          });
+  
+          // Switch back to img_2 on mouseout
+          img.addEventListener("mouseout", function() {
+            img.src = item.img_1;
+          });
+  
+          var h2 = document.createElement("h2");
+          h2.textContent = item.name;
+  
+          var p = document.createElement("p");
+          p.textContent = item.price + " €";
+  
+          div.appendChild(img);
+          div.appendChild(h2);
+          div.appendChild(p);
+  
+          container.appendChild(div);
+        }
+      });
+    });
 }
 
-function afficherPanier() {
-  const panier = JSON.parse(localStorage.getItem('panier')) || [];
-
-  const listePanier = document.getElementById('liste-panier');
-  listePanier.innerHTML = '';
-  panier.forEach(item => {
-    const element = document.createElement('li');
-    element.innerText = item.nom + ' - ' + item.prix;
-    listePanier.appendChild(element);
-  });
-
-  const nbElementsPanier = document.getElementById('nb-elements-panier');
-  nbElementsPanier.innerText = panier.length.toString();
-  ajouterBoutonViderPanier();
-}
-
-function ajouterBoutonViderPanier() {
-  const container = document.getElementById("container");
-
-  const boutonViderPanier = document.createElement("button");
-  boutonViderPanier.innerText = "Vider le panier";
-  boutonViderPanier.addEventListener("click", () => {
-    localStorage.removeItem("panier");
-    afficherPanier();
-  });
-
-  container.appendChild(boutonViderPanier);
-}
 
 
-window.addEventListener('load', afficherPanier);
+
+        
+
+window.onload = function() {
+  displayAllItems();
+};
+
+
+

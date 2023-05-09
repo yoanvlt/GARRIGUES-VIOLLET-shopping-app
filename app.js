@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const data = require('./data.json');
 
+
 app.use(express.static('frontend'));
 
 app.listen(port, () => {
@@ -39,6 +40,14 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/frontend/index.html');
 });
 
+app.get('/stussy/:id', (req, res) => {
+  res.sendFile(__dirname + '/frontend/stussy.html');
+});
+
+
+
+
 app.use((req, res, next) => {
   res.status(404).send("Désolé, cette page n'existe pas.");
 });
+

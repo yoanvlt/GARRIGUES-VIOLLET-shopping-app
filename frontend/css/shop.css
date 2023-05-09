@@ -16,9 +16,64 @@ body {
     margin-left: 11px;
 }
 
-#categories-shop p {
-    text-decoration: none;
-    color: #000;
-    font-size: 0.9rem;
-    margin: 0 10px;
+
+#categories-shop button {
+    background-color: white;
 }
+
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+  }
+  label {
+    display: inline-block;
+    padding: 5px 5px;
+    cursor: pointer;
+  }
+  input[type="radio"]:checked + label {
+    background-color: #fff;
+  }
+
+  form div {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  input[type="radio"]:checked + label {
+    color: #727272;
+  }
+  input[type="radio"]:checked + label:hover {
+    color: #727272;
+  }
+
+  .item {
+    display: inline-block;
+    width: calc(100% / 3 - 10px); 
+    margin: 5px; 
+    text-align: center; 
+  }
+  
+  .item img {
+    width: 100%; 
+    height: auto;
+    cursor: pointer;
+  }
+  
+  .item h2 {
+    margin: 5px 0; 
+    font-size: 16px; 
+  }
+  
+  .item p {
+    margin: 0;
+    font-size: 14px; 
+  }
+  
+  @media screen and (max-width: 600px) {
+    .item {
+      width: calc(100%  - 10px); 
+    }
+
+  }
+    
+  

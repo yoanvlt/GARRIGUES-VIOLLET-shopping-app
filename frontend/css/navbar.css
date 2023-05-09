@@ -74,7 +74,7 @@ nav div p:hover{
 
 .header__nav.open {
     display: flex;
-    animation: transformMenu 300ms ease-in-out forwards;
+    animation: transformMenu 420ms ease-in-out forwards;
 }
 
 @keyframes transformMenu {
@@ -92,7 +92,7 @@ nav div p:hover{
         position: fixed;
         top: 0;
         right: 0;
-        width: 100%;
+        width: 60%;
     }
 }
 
