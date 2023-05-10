@@ -4,43 +4,44 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Stussy</title>
+  <link rel="icon" href="..//assets/logo/logo-stussy.svg">
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/template.css">
   <link rel="stylesheet" href="/css/footer.css">
-
 </head>
 <body>
-  <nav>
-    <div id="nav-div-1">
-        <a href="/shop">SHOP</a>
-    </div>
-    <div id="nav-div-2">
-        <a href="/">
-        <img src="..//assets/logo/logo-stussy.svg"  alt="">
+
+<!-- NAVBAR -->
+<nav>
+  <div id="nav-div-1">
+    <a href="/shop">SHOP</a>
+  </div>
+  <div id="NavBurger2">
+    <a href="/">
+      <img src="..//assets/logo/logo-stussy.svg"  alt="">
     </a>
-    </div>
-    <div class="header__nav">
-      <div class="cart-items"></div>
-      <div class="header__nav-close">✖</div>
-    </div>
-    <div class="header__burger">
-        <p>CART</p>
-        <span class="burger__icon"></span>
-    </div>
+  </div>
+  <div class="NavBurger">
+    <div class="cart-items"></div>
+    <div class="NavBurger-close">✖</div>
+  </div>
+  <div class="DisplayBurger">
+    <p>CART</p>
+    <span class="burger__icon"></span>
+  </div>
 </nav>
 
-
+<!-- Affichage Vêtements -->
 <div class="grid-container">
   <div class="left-part">
-    <div id="picture-details" class="ctn">
+        <div id="picture-details" class="ctn">
       <div class="left-part">
         <div id="carousel-container">
             <div id="picture-details"></div>
             <div id="carousel-indicators"></div>
-        </div>
-    </div>
-    
+          </div>
+      </div>
     </div>
   </div>
   <div class="right-part">
@@ -60,213 +61,45 @@
     <h2>Details</h2>
     <div id="items-details2">
     </div>
-    <div class="addToCart" onclick="addToCart()">ADD TO BAG</div>
+    <div class="AjoutCart" onclick="AjoutCart()">ADD TO BAG</div>
   </div>
 </div>
+
+<!-- Footer -->
 
 <footer>
   <div class="footer1">
-      <div class="texte-footer">
+    <div class="texte-footer">
       <p class="titre-footer">STÜSSY</p>
       <p class="soustitre-footer">Unofficial Website of Stüssy. Worldwide since 1980.</p>
+    </div>
   </div>
-</div>
   <div class="footer2">
-      <div class="follow">
-          <p class="follow-titre">SUIVEZ-NOUS :</p>
-          <div class="follow-icon">
-              <a href=""><img src="/assets/logo/facebook.png" alt="facebook"></a>
-              <a href=""><img src="/assets/logo/instagram.png" alt="instagram"></a>
-              <a href=""><img src="/assets/logo/twitter.png" alt="twitter"></a>
-          </div>
+    <div class="follow">
+      <p class="follow-titre">SUIVEZ-NOUS :</p>
+      <div class="follow-icon">
+        <a href=""><img src="/assets/logo/facebook.png" alt="facebook"></a>
+        <a href=""><img src="/assets/logo/instagram.png" alt="instagram"></a>
+        <a href=""><img src="/assets/logo/twitter.png" alt="twitter"></a>
       </div>
-      <div class="call-us">
-          <p class="callus-titre">NOUS CONTACTER :</p>
-          <p>support@stussy.com</p>
-      </div>
+    </div>
+    <div class="call-us">
+      <p class="callus-titre">NOUS CONTACTER :</p>
+      <p>support@stussy.com</p>
+    </div>
   </div>
   <div class="footer3">
-      <p class="texte-footer2"> © 2023 STÜSSY</p>
+    <p class="texte-footer2"> © 2023 STÜSSY</p>
   </div>
 </footer>
 
-  <script>
-    const pathname = window.location.pathname;
-    const match = pathname.match(/\/stussy\/(\d+)/);
-    const id = match ? match[1] : null; 
+<!-- Script -->
 
-    fetch(`http://localhost:3000/shop/${id}`)
-  .then(response => response.json())
-  .then(data => {
-    const pictureDetails = document.getElementById('picture-details')
-    pictureDetails.innerHTML = `
-      <img id="main-image" src="${data.img_1}" alt="${data.name}" />
-      <div class="thumbnail">
-        <img src="${data.img_1}" alt="${data.name}" class="active" />
-        <img src="${data.img_2}" alt="${data.name}" />
-      </div>
-    `
-
-    // Add event listeners to the thumbnail images
-    const thumbnails = document.querySelectorAll('.thumbnail img');
-    thumbnails.forEach(thumbnail => {
-      thumbnail.addEventListener('click', (event) => {
-        // Remove 'active' class from all thumbnails
-        thumbnails.forEach(thumb => {
-          thumb.classList.remove('active');
-        });
-        // Add 'active' class to clicked thumbnail
-        event.target.classList.add('active');
-        // Change the main image
-        document.getElementById('main-image').src = event.target.src;
-      });
-    });
-  })
-  .catch(error => console.log(error))
-
-      
-
-      fetch (`http://localhost:3000/shop/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        const itemsDetails = document.getElementById('items-details1')
-
-         // Vérifier si la promotion est différente de 0
-        if (data.promo !== 0) {
-          // Calculer le nouveau prix
-          const newPrice = data.promo;
-          
-          itemsDetails.innerHTML = `
-            <h1>${data.name}</h1>
-            <p><del>${data.price}€</del> ${newPrice}€</p>
-          `
-        } else {
-          itemsDetails.innerHTML = `
-            <h1>${data.name}</h1>
-            <p>${data.price}€</p>
-          `
-        }
-      })
-      .catch(error => console.log(error))
-
-
-      fetch (`http://localhost:3000/shop/${id}`)
-      .then(response => response.json())
-      .then(data => {
-        const itemsDetails = document.getElementById('items-details2')
-        itemsDetails.innerHTML = `
-          <p>${data.materials}</p>
-          <p>${data.color}</p>
-          <p>${data.description}</p>
-        `
-      })
-    </script>    
-
-        <script>
-          const burger = document.querySelector('.header__burger');
-          const menu = document.querySelector('.header__nav');
-          const overlay = document.querySelector('#nav-div-2');
-      
-          burger.addEventListener('mouseenter', () => {
-              menu.classList.toggle('open');
-              overlay.classList.toggle('open');
-          });
-      
-          overlay.addEventListener('mouseenter', () => {
-              menu.classList.remove('open');
-              overlay.classList.remove('open');
-          });
-      
-          menu.addEventListener('mouseleave', () => {
-              menu.classList.remove('open');
-              overlay.classList.remove('open');
-          });
-      </script>
-
-      <script>
-            document.addEventListener('DOMContentLoaded', function() {
-        var closeButton = document.querySelector('.header__nav-close');
-        var nav = document.querySelector('.header__nav');
-        closeButton.addEventListener('click', function() {
-            nav.classList.remove('open');
-        });
-    });
-
-
-    function addToCart() {
-    const sizeInputs = document.getElementsByName('size');
-    let size = '';
-    for (let i = 0; i < sizeInputs.length; i++) {
-      if (sizeInputs[i].checked) {
-        size = sizeInputs[i].value;
-        break;
-      }
-    }
-    const addToCartButton = document.querySelector('.addToCart');
-    if (size) {
-      addToCartButton.textContent = `ADD TO BAG (${size})`;
-      addToCartItems(id, size);
-    } else {
-      addToCartButton.textContent = 'PLEASE SELECT A SIZE';
-    }
-    setTimeout(() => {
-      addToCartButton.textContent = 'ADD TO BAG';
-    }, 2000);
-  }
-
-  function addToCartItems(id, size) {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const item = cartItems.find(item => item.id === id && item.size === size);
-  if (item) {
-    item.quantity++;
-  } else {
-    cartItems.push({ id, size, quantity: 1 });
-  }
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  displayCartItems();
-}
-
-
-  function displayCartItems() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    const cartItemsContainer = document.querySelector('.cart-items');
-    cartItemsContainer.innerHTML = '';
-    cartItems.forEach(item => {
-      fetch(`http://localhost:3000/shop/${item.id}`)
-        .then(response => response.json())
-        .then(data => {
-          const itemContainer = document.createElement('div');
-          itemContainer.classList.add('cart-item');
-          itemContainer.innerHTML = `
-            <img src="${data.img_1}" alt="${data.name}" />
-            <div class="cart-item-details">
-              <p>${data.name}</p>
-              <p>${item.size}</p>
-              <p>${item.quantity}</p>
-            </div>
-          `;
-          cartItemsContainer.appendChild(itemContainer);
-        })
-        .catch(error => console.log(error));
-    });
-  }
-
-  displayCartItems();
-
-
-
-
-
-
-
-
-  </script>
-    <script src="/script/template.js"></script>
-  
+<script src="/script/template.js"></script>
+<script src="/script/burger.js"></script>
+<script src="/script/cart.js"></script>
 
 </body>
-
 </html>
 
 

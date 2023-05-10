@@ -1,84 +1,84 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Heveltica-Neue';
-    background-color: #fff;
-    letter-spacing: 1.5px;
+  font-family: 'Heveltica-Neue';
+  background-color: #fff;
+  letter-spacing: 1.5px;
 }
 
 #categories-shop {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    margin-left: 11px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 11px;
 }
 
-
 #categories-shop button {
-    background-color: white;
+  background-color: white;
 }
 
 input[type=checkbox] {
   display: none;
 }
-  label {
-    display: inline-block;
-    padding: 5px 5px;
-    cursor: pointer;
-  }
-  input[type="checkbox"]:checked + label {
-    background-color: #fff;
-  }
 
-  form div {
-    display: inline-block;
-    margin-right: 10px;
-  }
+label {
+  display: inline-block;
+  padding: 5px 5px;
+  cursor: pointer;
+}
 
-  input[type="checkbox"]:checked + label {
-    color: #727272;
-  }
-  input[type="checkbox"]:checked + label:hover {
-    color: #727272;
-  }
+input[type="checkbox"]:checked+label {
+  background-color: #fff;
+}
 
-  .item {
-    display: inline-block;
-    width: calc(100% / 3 - 10px); 
-    margin: 5px; 
-    text-align: center; 
-  }
-  
-  .item img {
-    width: 100%; 
-    height: auto;
-    cursor: pointer;
-  }
-  
-  .item h2 {
-    margin: 5px 0; 
-    font-size: 16px; 
-  }
-  
-  .item p {
-    margin: 0;
-    font-size: 14px; 
-  }
+form div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+input[type="checkbox"]:checked+label {
+  color: #727272;
+}
+
+input[type="checkbox"]:checked+label:hover {
+  color: #727272;
+}
+
+.item {
+  display: inline-block;
+  width: calc(100% / 3 - 10px);
+  margin: 5px;
+  text-align: center;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.item h2 {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.item p {
+  margin: 0;
+  font-size: 14px;
+}
 
 .hidden {
   display: none;
 }
 
 
-  @media screen and (max-width: 600px) {
-    .item {
-      width: calc(100%  - 10px); 
-    }
-
+@media screen and (max-width: 600px) {
+  .item {
+    width: calc(100% - 10px);
   }
-    
-  
+
+}

@@ -1,112 +1,118 @@
 
-let activeFilters = [];
-let allOptions = ['tee', 'longsleeve', 'hoodie', 'crewneck', 'jeans', 'shorts'];
+/* Création des constantes pour les filtres sur les vêtements */
+let FiltreStart = [];
+let Options = ['tee', 'longsleeve', 'hoodie', 'crewneck', 'jeans', 'shorts'];
 
+/* Fonction qui permet de cocher ou décocher tous les filtres */
 function Display(option) {
-  let allCheckbox = document.getElementById("all");
+  let Checkbox = document.getElementById("all");
 
   if (option == 1) {
-    activeFilters = [];
-    allCheckbox.checked = true;
-    allOptions.forEach(opt => document.getElementById(opt).checked = false);
+    FiltreStart = [];
+    Checkbox.checked = true;
+    Options.forEach(opt => document.getElementById(opt).checked = false);
     displayAllItems();
   } else {
-    let index = activeFilters.indexOf(option);
+    let index = FiltreStart.indexOf(option);
     let optionCheckbox = document.getElementById(option);
 
     if (index > -1) {
-      activeFilters.splice(index, 1);
+      FiltreStart.splice(index, 1);
       optionCheckbox.checked = false;
     } else {
-      activeFilters.push(option);
+      FiltreStart.push(option);
       optionCheckbox.checked = true;
     }
-    if (activeFilters.length === 0) {
-      allCheckbox.checked = true;
+    if (FiltreStart.length === 0) {
+      Checkbox.checked = true;
       displayAllItems();
     } else {  
-      allCheckbox.checked = false;
+      Checkbox.checked = false;
     }
 
-    displayFilteredItems();
+    displayFiltreItems();
   }
 }
 
+let FiltreCouleurs = [];
 
-let activeColorFilters = [];
+
+/* Fonction qui filtres les couleurs et coche et décoche */
 
 function DisplayColor(color) {
-  let index = activeColorFilters.indexOf(color);
+  let index = FiltreCouleurs.indexOf(color);
 
   if (index > -1) {
-    activeColorFilters.splice(index, 1);
+    FiltreCouleurs.splice(index, 1);
     document.getElementById(color).checked = false;
   } else {
-    activeColorFilters.push(color);
+    FiltreCouleurs.push(color);
     document.getElementById(color).checked = true;
   }
 
-  displayFilteredItems();
+  displayFiltreItems();
 }
 
-let priceSort = null;  
+let prix = null;  
+
+/* Fonction qui permet de trier les prix par ordre croissant ou décroissant */
 
 function DisplayPrice(sortOrder) {
   if (sortOrder == 'croissant' || sortOrder == 'decroissant') {
-    priceSort = sortOrder;
+    prix = sortOrder;
     document.getElementById(sortOrder).checked = true;
     document.getElementById(sortOrder == 'croissant' ? 'decroissant' : 'croissant').checked = false;
   } else {
-    priceSort = null;
+    prix = null;
   }
 
-  displayFilteredItems();
+  displayFiltreItems();
 }
 
-
+/* Fonction qui permet d'afficher tout les filtres avec le + */
 document.getElementById("toggleFilters").addEventListener("click", function() {
-  let extraFilters = document.getElementById("extraFilters");
-  let toggleButton = document.getElementById("toggleFilters");
+  let FiltreSup = document.getElementById("FiltreSup");
+  let Boutton = document.getElementById("toggleFilters");
   
-  if (extraFilters.classList.contains("hidden")) {
-    extraFilters.classList.remove("hidden");
-    toggleButton.textContent = "-";
-    toggleButton.style.padding = "0 6px";
+  if (FiltreSup.classList.contains("hidden")) {
+    FiltreSup.classList.remove("hidden");
+    Boutton.textContent = "-";
+    Boutton.style.padding = "0 6px";
   } else {
-    extraFilters.classList.add("hidden");
-    toggleButton.textContent = "+";
-    toggleButton.style.padding = "0 5px";
+    FiltreSup.classList.add("hidden");
+    Boutton.textContent = "+";
+    Boutton.style.padding = "0 5px";
   }
 });
 
 
+/* Fonction qui permet d'afficher les items filtrés */
 
-
-function displayFilteredItems() {
+function displayFiltreItems() {
   var container = document.getElementById("container");
   container.innerHTML = "";
 
   fetch("http://localhost:3000/stussy")
     .then((response) => response.json())
     .then((data) => {
-      if (priceSort == 'croissant') {
+      if (prix == 'croissant') {
         data.sort((a, b) => a.price - b.price);
-      } else if (priceSort == 'decroissant') {
+      } else if (prix == 'decroissant') {
         data.sort((a, b) => b.price - a.price);
       }
 
-      var filteredItems = data.filter((item) => {
-        return (activeFilters.includes(item.class) || activeFilters.length == 0) &&
-               (activeColorFilters.includes(item.color) || activeColorFilters.length == 0);
+      var FiltreItems = data.filter((item) => {
+        return (FiltreStart.includes(item.class) || FiltreStart.length == 0) &&
+               (FiltreCouleurs.includes(item.color) || FiltreCouleurs.length == 0);
       });
 
-      if (filteredItems.length === 0) {
-        var message = document.createElement("div");
-        message.textContent = "No results found";
-        message.style.textAlign = "center";
-        container.appendChild(message);
+      if (FiltreItems.length === 0) {
+        var texte = document.createElement("div");
+        texte.textContent = "No results found";
+        texte.style.textAlign = "center";
+        container.appendChild(texte);
       } else {
-        filteredItems.forEach((item) => {
+        FiltreItems.forEach((item) => {
           var div = document.createElement("div");
           div.className = "item";
 
@@ -131,17 +137,17 @@ function displayFilteredItems() {
 
           var p = document.createElement("p");
           if (item.promo && item.promo != 0) {
-            var oldPrice = document.createElement("span");
-            oldPrice.style.textDecoration = "line-through";
-            oldPrice.textContent = item.price + " € ";
-            oldPrice.style.marginRight = "10px";
+            var ancienPrix = document.createElement("span");
+            ancienPrix.style.textDecoration = "line-through";
+            ancienPrix.textContent = item.price + " € ";
+            ancienPrix.style.marginRight = "10px";
             
-            var newPrice = document.createElement("span");
-            newPrice.style.color = "red";
-            newPrice.textContent = item.promo + " €";
+            var nouveauPrix = document.createElement("span");
+            nouveauPrix.style.color = "red";
+            nouveauPrix.textContent = item.promo + " €";
 
-            p.appendChild(oldPrice);
-            p.appendChild(newPrice);
+            p.appendChild(ancienPrix);
+            p.appendChild(nouveauPrix);
           } else {
             p.textContent = item.price + " €";
           }
@@ -157,6 +163,7 @@ function displayFilteredItems() {
 }
 
 
+/* Fonction qui permet d'afficher tout les items */
 
 function displayAllItems() {
   var container = document.getElementById("container");
@@ -190,17 +197,17 @@ function displayAllItems() {
 
         var p = document.createElement("p");
         if (item.promo && item.promo != 0) {
-          var oldPrice = document.createElement("span");
-          oldPrice.style.textDecoration = "line-through";
-          oldPrice.textContent = item.price + " € ";
-          oldPrice.style.marginRight = "10px";
+          var ancienPrix = document.createElement("span");
+          ancienPrix.style.textDecoration = "line-through";
+          ancienPrix.textContent = item.price + " € ";
+          ancienPrix.style.marginRight = "10px";
 
-          var newPrice = document.createElement("span");
-          newPrice.style.color = "red";
-          newPrice.textContent = item.promo + " €";
+          var nouveauPrix = document.createElement("span");
+          nouveauPrix.style.color = "red";
+          nouveauPrix.textContent = item.promo + " €";
 
-          p.appendChild(oldPrice);
-          p.appendChild(newPrice);
+          p.appendChild(ancienPrix);
+          p.appendChild(nouveauPrix);
         } else {
           p.textContent = item.price + " €";
         }
