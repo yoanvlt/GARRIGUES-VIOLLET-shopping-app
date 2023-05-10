@@ -66,12 +66,19 @@ function DisplayPrice(sortOrder) {
 
 document.getElementById("toggleFilters").addEventListener("click", function() {
   let extraFilters = document.getElementById("extraFilters");
+  let toggleButton = document.getElementById("toggleFilters");
+  
   if (extraFilters.classList.contains("hidden")) {
     extraFilters.classList.remove("hidden");
+    toggleButton.textContent = "-";
+    toggleButton.style.padding = "0 6px";
   } else {
     extraFilters.classList.add("hidden");
+    toggleButton.textContent = "+";
+    toggleButton.style.padding = "0 5px";
   }
 });
+
 
 
 
