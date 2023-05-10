@@ -95,9 +95,18 @@ function displayFilteredItems() {
         data.sort((a, b) => b.price - a.price);
       }
 
-      data.forEach((item) => {
-        if ((activeFilters.includes(item.class) || activeFilters.length == 0) &&
-            (activeColorFilters.includes(item.color) || activeColorFilters.length == 0)) {
+      var filteredItems = data.filter((item) => {
+        return (activeFilters.includes(item.class) || activeFilters.length == 0) &&
+               (activeColorFilters.includes(item.color) || activeColorFilters.length == 0);
+      });
+
+      if (filteredItems.length === 0) {
+        var message = document.createElement("div");
+        message.textContent = "No results found";
+        message.style.textAlign = "center";
+        container.appendChild(message);
+      } else {
+        filteredItems.forEach((item) => {
           var div = document.createElement("div");
           div.className = "item";
 
@@ -142,8 +151,8 @@ function displayFilteredItems() {
           div.appendChild(p);
 
           container.appendChild(div);
-        }
-      });
+        });
+      }
     });
 }
 
