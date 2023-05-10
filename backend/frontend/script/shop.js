@@ -92,13 +92,14 @@ function displayFiltreItems() {
   container.innerHTML = "";
 
   fetch("http://localhost:3000/stussy")
-    .then((response) => response.json())
-    .then((data) => {
-      if (prix == 'croissant') {
-        data.sort((a, b) => a.price - b.price);
-      } else if (prix == 'decroissant') {
-        data.sort((a, b) => b.price - a.price);
-      }
+  .then((response) => response.json())
+  .then((data) => {
+    if (prix == 'croissant') {
+      data.sort((a, b) => (a.promo !== 0 ? a.promo : a.price) - (b.promo !== 0 ? b.promo : b.price));
+    } else if (prix == 'decroissant') {
+      data.sort((a, b) => (b.promo !== 0 ? b.promo : b.price) - (a.promo !== 0 ? a.promo : a.price));
+    }
+
 
       var FiltreItems = data.filter((item) => {
         return (FiltreStart.includes(item.class) || FiltreStart.length == 0) &&(FiltreCouleurs.includes(item.color) || FiltreCouleurs.length == 0);
