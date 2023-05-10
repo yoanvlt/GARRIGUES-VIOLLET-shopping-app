@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/template.css">
+  <script src="script/template.js"></script>
 </head>
 <body>
   <nav>
@@ -30,7 +31,15 @@
 
 <div class="grid-container">
   <div class="left-part">
-    <div id="picture-details"></div>
+    <div id="picture-details" class="ctn">
+      <div class="left-part">
+        <div id="carousel-container">
+            <div id="picture-details"></div>
+            <div id="carousel-indicators"></div>
+        </div>
+    </div>
+    
+    </div>
   </div>
   <div class="right-part">
     <div id="items-details1"></div>
@@ -52,54 +61,78 @@
     <div class="addToCart">ADD TO BAG</div>
   </div>
 
-  
+  <script>
+    const pathname = window.location.pathname;
+    const match = pathname.match(/\/stussy\/(\d+)/);
+    const id = match ? match[1] : null; 
 
+    fetch(`http://localhost:3000/shop/${id}`)
+  .then(response => response.json())
+  .then(data => {
+    const pictureDetails = document.getElementById('picture-details')
+    pictureDetails.innerHTML = `
+      <img id="main-image" src="${data.img_1}" alt="${data.name}" />
+      <div class="thumbnail">
+        <img src="${data.img_1}" alt="${data.name}" class="active" />
+        <img src="${data.img_2}" alt="${data.name}" />
+      </div>
+    `
 
+    // Add event listeners to the thumbnail images
+    const thumbnails = document.querySelectorAll('.thumbnail img');
+    thumbnails.forEach(thumbnail => {
+      thumbnail.addEventListener('click', (event) => {
+        // Remove 'active' class from all thumbnails
+        thumbnails.forEach(thumb => {
+          thumb.classList.remove('active');
+        });
+        // Add 'active' class to clicked thumbnail
+        event.target.classList.add('active');
+        // Change the main image
+        document.getElementById('main-image').src = event.target.src;
+      });
+    });
+  })
+  .catch(error => console.log(error))
 
-<script>
-  const pathname = window.location.pathname;
-  const match = pathname.match(/\/stussy\/(\d+)/);
-  const id = match ? match[1] : null; 
-  
+      
+
       fetch (`http://localhost:3000/shop/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          const pictureDetails = document.getElementById('picture-details')
-          pictureDetails.innerHTML = `
-            <img src="${data.img_1}" alt="${data.name}" />
-            <img src="${data.img_2}" alt="${data.name}" />
-          `
-        })
-        .catch(error => console.log(error))
+      .then(response => response.json())
+      .then(data => {
+        const itemsDetails = document.getElementById('items-details1')
 
-        fetch (`http://localhost:3000/shop/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          const itemsDetails = document.getElementById('items-details1')
+         // Vérifier si la promotion est différente de 0
+        if (data.promo !== 0) {
+          // Calculer le nouveau prix
+          const newPrice = data.promo;
+          
           itemsDetails.innerHTML = `
-          <h1>${data.name}</h1>
-          <p>${data.price}€</p>
+            <h1>${data.name}</h1>
+            <p><del>${data.price}€</del> ${newPrice}€</p>
           `
-        })
-        .catch(error => console.log(error))
-
-        fetch (`http://localhost:3000/shop/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          const itemsDetails = document.getElementById('items-details2')
+        } else {
           itemsDetails.innerHTML = `
-            <p>${data.materials}</p>
-            <p>${data.color}</p>
-            <p>${data.description}</p>
+            <h1>${data.name}</h1>
+            <p>${data.price}€</p>
           `
-        })
-        
+        }
+      })
+      .catch(error => console.log(error))
 
 
+      fetch (`http://localhost:3000/shop/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        const itemsDetails = document.getElementById('items-details2')
+        itemsDetails.innerHTML = `
+          <p>${data.materials}</p>
+          <p>${data.color}</p>
+          <p>${data.description}</p>
+        `
+      })
+    </script>    
 
-
-  
-    </script>
         <script>
           const burger = document.querySelector('.header__burger');
           const menu = document.querySelector('.header__nav');
@@ -131,6 +164,13 @@
     });
 
       </script>
+
+      <script>
+
+
+      </script>
 </body>
 
 </html>
+
+
