@@ -49,7 +49,7 @@ function DisplayColor(color) {
   displayFilteredItems();
 }
 
-let priceSort = null;  // 'croissant' or 'decroissant'
+let priceSort = null;  
 
 function DisplayPrice(sortOrder) {
   if (sortOrder == 'croissant' || sortOrder == 'decroissant') {
@@ -63,7 +63,7 @@ function DisplayPrice(sortOrder) {
   displayFilteredItems();
 }
 
-// Add an event listener to the '+' button to toggle the display of the color and price options
+
 document.getElementById("toggleFilters").addEventListener("click", function() {
   let extraFilters = document.getElementById("extraFilters");
   if (extraFilters.classList.contains("hidden")) {
@@ -73,7 +73,6 @@ document.getElementById("toggleFilters").addEventListener("click", function() {
   }
 });
 
-// Other JS code...
 
 
 function displayFilteredItems() {

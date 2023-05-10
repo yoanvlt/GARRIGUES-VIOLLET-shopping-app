@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/template.css">
+</head>
+<body>
+  <nav>
+    <div id="nav-div-1">
+        <a href="/shop">SHOP</a>
+    </div>
+    <div id="nav-div-2">
+        <a href="/">
+        <img src="..//assets/logo/logo-stussy.svg"  alt="">
+    </a>
+    </div>
+    <div class="header__nav">
+    </div>
+    <div class="header__burger">
+        <p>CART</p>
+        <span class="burger__icon"></span>
+    </div>
+</nav>
+
+
+<div class="grid-container">
+  <div class="left-part">
+    <div id="picture-details"></div>
+  </div>
+  <div class="right-part">
+    <div id="items-details1"></div>
+    <div class="radio-taille">
+    <input type="radio" id="size-s" name="size" value="S">
+    <label for="size-s">S</label><br>
+    <input type="radio" id="size-m" name="size" value="M">
+    <label for="size-m">M</label><br>
+    <input type="radio" id="size-l" name="size" value="L">
+    <label for="size-l">L</label><br>
+    <input type="radio" id="size-xl" name="size" value="XL">
+    <label for="size-xl">XL</label><br>
+    <input type="radio" id="size-xxl" name="size" value="XXL">
+    <label for="size-xxl">XXL</label><br>
+  </div>
+    <div id="items-details2">
+    </div>
+  </div>
+
+
+
+<script>
+  const pathname = window.location.pathname;
+  const match = pathname.match(/\/stussy\/(\d+)/);
+  const id = match ? match[1] : null; 
+  
+      fetch (`http://localhost:3000/shop/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          const pictureDetails = document.getElementById('picture-details')
+          pictureDetails.innerHTML = `
+            <img src="${data.img_1}" alt="${data.name}" />
+            <img src="${data.img_2}" alt="${data.name}" />
+          `
+        })
+        .catch(error => console.log(error))
+
+        fetch (`http://localhost:3000/shop/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          const itemsDetails = document.getElementById('items-details1')
+          itemsDetails.innerHTML = `
+          <h1>${data.name}</h1>
+          <p>${data.price}€</p>
+          `
+        })
+        .catch(error => console.log(error))
+
+        fetch (`http://localhost:3000/shop/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          const itemsDetails = document.getElementById('items-details2')
+          itemsDetails.innerHTML = `
+          <p>${data.price}€</p> 
+            <p>${data.materials}</p>
+            <p>${data.color}</p>
+            <p>${data.description}</p>
+          `
+        })
+        
+
+
+
+
+  
+    </script>
+        <script>
+          const burger = document.querySelector('.header__burger');
+          const menu = document.querySelector('.header__nav');
+          const overlay = document.querySelector('#nav-div-2');
+      
+          burger.addEventListener('mouseenter', () => {
+              menu.classList.toggle('open');
+              overlay.classList.toggle('open');
+          });
+      
+          overlay.addEventListener('mouseenter', () => {
+              menu.classList.remove('open');
+              overlay.classList.remove('open');
+          });
+      
+          menu.addEventListener('mouseleave', () => {
+              menu.classList.remove('open');
+              overlay.classList.remove('open');
+          });
+      </script>
+</body>
+
+</html>

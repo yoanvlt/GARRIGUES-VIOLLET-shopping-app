@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/stussy/:id', (req, res) => {
-  res.sendFile(__dirname + '/frontend/stussy.html');
+  res.sendFile(__dirname + '/frontend/template.html');
 });
 
 
