@@ -20,6 +20,7 @@
         </a>
         </div>
         <div class="header__nav">
+            <div class="header__nav-close">✖</div>
         </div>
         <div class="header__burger">
             <p>CART</p>
@@ -78,6 +79,13 @@
         menu.addEventListener('mouseleave', () => {
             menu.classList.remove('open');
             overlay.classList.remove('open');
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var closeButton = document.querySelector('.header__nav-close');
+            var nav = document.querySelector('.header__nav');
+            closeButton.addEventListener('click', function() {
+                nav.classList.remove('open');
+            });
         });
     </script>
 </body>
