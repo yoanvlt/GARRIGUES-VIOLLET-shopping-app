@@ -46,9 +46,13 @@
     <input type="radio" id="size-xxl" name="size" value="XXL">
     <label for="size-xxl">XXL</label><br>
   </div>
+    <h2>Details</h2>
     <div id="items-details2">
     </div>
+    <div class="addToCart">ADD TO BAG</div>
   </div>
+
+  
 
 
 
@@ -84,7 +88,6 @@
         .then(data => {
           const itemsDetails = document.getElementById('items-details2')
           itemsDetails.innerHTML = `
-          <p>${data.price}€</p> 
             <p>${data.materials}</p>
             <p>${data.color}</p>
             <p>${data.description}</p>
@@ -116,13 +119,17 @@
               menu.classList.remove('open');
               overlay.classList.remove('open');
           });
-          document.addEventListener('DOMContentLoaded', function() {
-              var closeButton = document.querySelector('.header__nav-close');
-              var nav = document.querySelector('.header__nav');
-              closeButton.addEventListener('click', function() {
-                  nav.classList.remove('open');
-              });
-          });
+      </script>
+
+      <script>
+            document.addEventListener('DOMContentLoaded', function() {
+        var closeButton = document.querySelector('.header__nav-close');
+        var nav = document.querySelector('.header__nav');
+        closeButton.addEventListener('click', function() {
+            nav.classList.remove('open');
+        });
+    });
+
       </script>
 </body>
 
