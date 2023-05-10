@@ -1,6 +1,6 @@
 # GARRIGUES-VIOLLET-shopping-app
 
-![Logo Harry Potter](frontend/assets/logo/stussy-1.svg "Logo du site")
+![Logo STUSSY](frontend/assets/logo/stussy-1.svg "Logo du site")
 
 ## Le Projet :
 

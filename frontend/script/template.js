@@ -55,10 +55,10 @@ pictureDetails.innerHTML = `
   </div>
 `
 /*  Permet l'utilisation du carousel */
-const thumbnails = document.querySelectorAll('.thumbnail img');
-thumbnails.forEach(thumbnail => {
+const carouselImg = document.querySelectorAll('.thumbnail img');
+carouselImg.forEach(thumbnail => {
   thumbnail.addEventListener('click', (event) => {
-    thumbnails.forEach(thumb => {
+    carouselImg.forEach(thumb => {
       thumb.classList.remove('active');
     });
     event.target.classList.add('active');

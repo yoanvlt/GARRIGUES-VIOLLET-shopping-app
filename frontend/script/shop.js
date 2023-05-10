@@ -102,8 +102,7 @@ function displayFiltreItems() {
       }
 
       var FiltreItems = data.filter((item) => {
-        return (FiltreStart.includes(item.class) || FiltreStart.length == 0) &&
-               (FiltreCouleurs.includes(item.color) || FiltreCouleurs.length == 0);
+        return (FiltreStart.includes(item.class) || FiltreStart.length == 0) &&(FiltreCouleurs.includes(item.color) || FiltreCouleurs.length == 0);
       });
 
       if (FiltreItems.length === 0) {

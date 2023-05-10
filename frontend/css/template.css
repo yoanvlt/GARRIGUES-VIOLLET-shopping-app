@@ -158,7 +158,7 @@ input[type="radio"]:checked+label {
   opacity: 1;
 }
 
-#carousel-indicators {
+#Icarousel {
   position: absolute;
   bottom: 0;
   width: 100%;
