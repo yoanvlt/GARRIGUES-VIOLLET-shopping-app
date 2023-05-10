@@ -85,7 +85,6 @@ document.getElementById("toggleFilters").addEventListener("click", function() {
   }
 });
 
-
 /* Fonction qui permet d'afficher les items filtrés */
 
 function displayFiltreItems() {
