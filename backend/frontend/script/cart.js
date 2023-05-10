@@ -35,8 +35,31 @@ localStorage.setItem('cartItems', JSON.stringify(cartItems));
 displayCartItems();
 }
 
-/* Fonction qui permet d'afficher les items dans le panier */
+/* Fonction qui vérifie si le panier est vide et si c est le cas le remet a 0 */
+function calculateAndDisplayTotal() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  let totalPrice = 0;
+  
+  if (cartItems.length === 0) { 
+    document.querySelector('.cart-price').innerHTML = `<h2> Total: 0€ </h2>`;
+  } else {
+    Promise.all(cartItems.map(item => {
+      return fetch(`http://localhost:3000/shop/${item.id}`)
+        .then(response => response.json())
+        .then(data => {
+          const itemPrice = data.promo !== 0 ? data.promo : data.price;
+          totalPrice += itemPrice * item.quantity;
+        })
+    }))
+    .then(() => {
+      document.querySelector('.cart-price').innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
+    })
+    .catch(error => console.log(error));
+  }
+}
 
+
+/* Fonction qui permet d'afficher les items dans le panier */
 function displayCartItems() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   const cartItemsContainer = document.querySelector('.cart-items');
@@ -48,21 +71,23 @@ function displayCartItems() {
       .then(data => {
         const itemContainer = document.createElement('div');
         itemContainer.classList.add('cart-item');
+
+        const itemPrice = data.promo !== 0 ? data.promo : data.price;
+
         itemContainer.innerHTML = `
           <img src="${data.img_1}" alt="${data.name}" />
           <div class="cart-item-details">
             <p>${data.name}</p>
             <p>${item.size}</p>
             <p>${item.quantity}</p>
-            <p>${data.price}€</p>
+            <p>${itemPrice}€</p>
           </div>
         `;
         cartItemsContainer.appendChild(itemContainer);
 
         const totalPrice = cartItems.reduce((acc, item) => {
-          return acc + item.quantity * data.price;
-        }
-        , 0);
+          return acc + item.quantity * itemPrice;
+        }, 0);
         cartTotal.innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
         const deleteItem = document.createElement('button');
         deleteItem.classList.add('delete-item');
@@ -73,8 +98,10 @@ function displayCartItems() {
           });
           localStorage.setItem('cartItems', JSON.stringify(newCartItems));
           displayCartItems();
-        }
-        );
+          calculateAndDisplayTotal(); 
+        });
+        
+        
         itemContainer.appendChild(deleteItem);
       })
       .catch(error => console.log(error));
@@ -82,4 +109,5 @@ function displayCartItems() {
 }
 
 displayCartItems();
+
 
