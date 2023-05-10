@@ -34,20 +34,17 @@ function displayAllItems() {
         div.className = "item";
 
         var img = document.createElement("img");
-        img.src = item.img_1; // Initially display img_2
+        img.src = item.img_1; 
         img.alt = item.name;
 
-        // Switch to img_2 on mouseover
         img.addEventListener("mouseover", function() {
           img.src = item.img_2;
         });
 
-        // Switch back to img_1 on mouseout
         img.addEventListener("mouseout", function() {
           img.src = item.img_1;
         });
 
-        // Redirect to item details page on click
         img.addEventListener("click", function() {
           window.location.href = "http://localhost:3000/stussy/" + item.id;
         });
@@ -70,7 +67,7 @@ function displayAllItems() {
             
 function displayItems(className) {
   var container = document.getElementById("container");
-  container.innerHTML = ""; // Effacer le contenu précédent du conteneur
+  container.innerHTML = ""; 
 
   fetch("http://localhost:3000/stussy")
     .then((response) => response.json())
@@ -81,17 +78,19 @@ function displayItems(className) {
           div.className = "item";
   
           var img = document.createElement("img");
-          img.src = item.img_1; // Initially display img_2
+          img.src = item.img_1;
           img.alt = item.name;
   
-          // Switch to img_1 on mouseover
           img.addEventListener("mouseover", function() {
             img.src = item.img_2;
           });
   
-          // Switch back to img_2 on mouseout
           img.addEventListener("mouseout", function() {
             img.src = item.img_1;
+          });
+
+          img.addEventListener("click", function() {
+            window.location.href = "http://localhost:3000/stussy/" + item.id;
           });
   
           var h2 = document.createElement("h2");
@@ -110,10 +109,6 @@ function displayItems(className) {
     });
 }
 
-
-
-
-        
 
 window.onload = function() {
   displayAllItems();
