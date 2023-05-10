@@ -22,6 +22,7 @@ function Display(option) {
     }
     if (activeFilters.length === 0) {
       allCheckbox.checked = true;
+      displayAllItems();
     } else {
       allCheckbox.checked = false;
     }
