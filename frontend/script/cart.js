@@ -40,6 +40,7 @@ displayCartItems();
 function displayCartItems() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   const cartItemsContainer = document.querySelector('.cart-items');
+  const cartTotal = document.querySelector('.cart-price');
   cartItemsContainer.innerHTML = '';
   cartItems.forEach(item => {
     fetch(`http://localhost:3000/shop/${item.id}`)
@@ -57,9 +58,16 @@ function displayCartItems() {
           </div>
         `;
         cartItemsContainer.appendChild(itemContainer);
+
+        const totalPrice = cartItems.reduce((acc, item) => {
+          return acc + item.quantity * data.price;
+        }
+        , 0);
+        cartTotal.innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
       })
       .catch(error => console.log(error));
   });
 }
 
 displayCartItems();
+
