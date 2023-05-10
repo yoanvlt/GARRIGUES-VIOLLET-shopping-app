@@ -24,7 +24,7 @@ function Display(option) {
     if (activeFilters.length === 0) {
       allCheckbox.checked = true;
       displayAllItems();
-    } else {
+    } else {  
       allCheckbox.checked = false;
     }
 
@@ -83,7 +83,6 @@ function displayFilteredItems() {
   fetch("http://localhost:3000/stussy")
     .then((response) => response.json())
     .then((data) => {
-      // If a price sort order is set, sort the data accordingly
       if (priceSort == 'croissant') {
         data.sort((a, b) => a.price - b.price);
       } else if (priceSort == 'decroissant') {
@@ -116,7 +115,21 @@ function displayFilteredItems() {
           h2.textContent = item.name;
 
           var p = document.createElement("p");
-          p.textContent = item.price + " €";
+          if (item.promo && item.promo != 0) {
+            var oldPrice = document.createElement("span");
+            oldPrice.style.textDecoration = "line-through";
+            oldPrice.textContent = item.price + " € ";
+            oldPrice.style.marginRight = "10px";
+            
+            var newPrice = document.createElement("span");
+            newPrice.style.color = "red";
+            newPrice.textContent = item.promo + " €";
+
+            p.appendChild(oldPrice);
+            p.appendChild(newPrice);
+          } else {
+            p.textContent = item.price + " €";
+          }
 
           div.appendChild(img);
           div.appendChild(h2);
@@ -161,12 +174,25 @@ function displayAllItems() {
         h2.textContent = item.name;
 
         var p = document.createElement("p");
-        p.textContent = item.price + " €";
+        if (item.promo && item.promo != 0) {
+          var oldPrice = document.createElement("span");
+          oldPrice.style.textDecoration = "line-through";
+          oldPrice.textContent = item.price + " € ";
+          oldPrice.style.marginRight = "10px";
+
+          var newPrice = document.createElement("span");
+          newPrice.style.color = "red";
+          newPrice.textContent = item.promo + " €";
+
+          p.appendChild(oldPrice);
+          p.appendChild(newPrice);
+        } else {
+          p.textContent = item.price + " €";
+        }
 
         div.appendChild(img);
         div.appendChild(h2);
         div.appendChild(p);
-
         container.appendChild(div);
       });
     });
