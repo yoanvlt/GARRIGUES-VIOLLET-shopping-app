@@ -1,6 +1,6 @@
 # GARRIGUES-VIOLLET-shopping-app
 
-![Logo STUSSY](frontend/assets/logo/stussy-1.svg "Logo du site")
+![Logo STUSSY](backend/frontend/assets/logo/stussy-1.svg "Logo du site")
 
 ## Le Projet :
 
