@@ -64,6 +64,18 @@ function displayCartItems() {
         }
         , 0);
         cartTotal.innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
+        const deleteItem = document.createElement('button');
+        deleteItem.classList.add('delete-item');
+        deleteItem.textContent = 'X';
+        deleteItem.addEventListener('click', () => {
+          const newCartItems = cartItems.filter(cartItem => {
+            return cartItem.id !== item.id || cartItem.size !== item.size;
+          });
+          localStorage.setItem('cartItems', JSON.stringify(newCartItems));
+          displayCartItems();
+        }
+        );
+        itemContainer.appendChild(deleteItem);
       })
       .catch(error => console.log(error));
   });
