@@ -67,14 +67,19 @@ nav div p:hover{
     right: 0;
     width: 33%;
     height: 100vh;
-    background-color: #161618;
+    background-color: rgba(255, 255, 255, 0.8); 
+    backdrop-filter: blur(10px);
     display: none;
     z-index: 1;
 }
 
 .header__nav.open {
     display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
     animation: transformMenu 420ms ease-in-out forwards;
+
 }
 
 .header__nav-close {
@@ -107,6 +112,7 @@ nav div p:hover{
     }
     .header__nav-close {
         display:block;
+        color: black;
     }
 }
 
@@ -123,4 +129,17 @@ nav div p:hover{
 
 .overlay-menu-mobile.open {
     display: block;
+}
+
+.header__nav h1{
+    color: black;
+    font-size: 30px;
+    margin-top: 4%;
+}
+
+
+.list_items{
+    width: 100%;
+    display: flex;
+    height : 100%;
 }

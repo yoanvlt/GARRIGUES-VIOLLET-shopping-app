@@ -7,7 +7,8 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/navbar.css">
   <link rel="stylesheet" href="/css/template.css">
-  <script src="script/template.js"></script>
+  <link rel="stylesheet" href="/css/footer.css">
+
 </head>
 <body>
   <nav>
@@ -20,6 +21,7 @@
     </a>
     </div>
     <div class="header__nav">
+      <div class="cart-items"></div>
       <div class="header__nav-close">✖</div>
     </div>
     <div class="header__burger">
@@ -44,22 +46,49 @@
   <div class="right-part">
     <div id="items-details1"></div>
     <div class="radio-taille">
-    <input type="radio" id="size-s" name="size" value="S">
+    <input type="radio" class="size" id="size-s" name="size" value="S">
     <label for="size-s">S</label><br>
-    <input type="radio" id="size-m" name="size" value="M">
+    <input type="radio" class="size" id="size-m" name="size" value="M">
     <label for="size-m">M</label><br>
-    <input type="radio" id="size-l" name="size" value="L">
+    <input type="radio" class="size" id="size-l" name="size" value="L">
     <label for="size-l">L</label><br>
-    <input type="radio" id="size-xl" name="size" value="XL">
+    <input type="radio" class="size" id="size-xl" name="size" value="XL">
     <label for="size-xl">XL</label><br>
-    <input type="radio" id="size-xxl" name="size" value="XXL">
+    <input type="radio" class="size" id="size-xxl" name="size" value="XXL">
     <label for="size-xxl">XXL</label><br>
   </div>
     <h2>Details</h2>
     <div id="items-details2">
     </div>
-    <div class="addToCart">ADD TO BAG</div>
+    <div class="addToCart" onclick="addToCart()">ADD TO BAG</div>
   </div>
+</div>
+
+<footer>
+  <div class="footer1">
+      <div class="texte-footer">
+      <p class="titre-footer">STÜSSY</p>
+      <p class="soustitre-footer">Unofficial Website of Stüssy. Worldwide since 1980.</p>
+  </div>
+</div>
+  <div class="footer2">
+      <div class="follow">
+          <p class="follow-titre">SUIVEZ-NOUS :</p>
+          <div class="follow-icon">
+              <a href=""><img src="/assets/logo/facebook.png" alt="facebook"></a>
+              <a href=""><img src="/assets/logo/instagram.png" alt="instagram"></a>
+              <a href=""><img src="/assets/logo/twitter.png" alt="twitter"></a>
+          </div>
+      </div>
+      <div class="call-us">
+          <p class="callus-titre">NOUS CONTACTER :</p>
+          <p>support@stussy.com</p>
+      </div>
+  </div>
+  <div class="footer3">
+      <p class="texte-footer2"> © 2023 STÜSSY</p>
+  </div>
+</footer>
 
   <script>
     const pathname = window.location.pathname;
@@ -163,12 +192,79 @@
         });
     });
 
-      </script>
 
-      <script>
+    function addToCart() {
+    const sizeInputs = document.getElementsByName('size');
+    let size = '';
+    for (let i = 0; i < sizeInputs.length; i++) {
+      if (sizeInputs[i].checked) {
+        size = sizeInputs[i].value;
+        break;
+      }
+    }
+    const addToCartButton = document.querySelector('.addToCart');
+    if (size) {
+      addToCartButton.textContent = `ADD TO BAG (${size})`;
+      addToCartItems(id, size);
+    } else {
+      addToCartButton.textContent = 'PLEASE SELECT A SIZE';
+    }
+    setTimeout(() => {
+      addToCartButton.textContent = 'ADD TO BAG';
+    }, 2000);
+  }
+
+  function addToCartItems(id, size) {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const item = cartItems.find(item => item.id === id && item.size === size);
+  if (item) {
+    item.quantity++;
+  } else {
+    cartItems.push({ id, size, quantity: 1 });
+  }
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  displayCartItems();
+}
 
 
-      </script>
+  function displayCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartItemsContainer = document.querySelector('.cart-items');
+    cartItemsContainer.innerHTML = '';
+    cartItems.forEach(item => {
+      fetch(`http://localhost:3000/shop/${item.id}`)
+        .then(response => response.json())
+        .then(data => {
+          const itemContainer = document.createElement('div');
+          itemContainer.classList.add('cart-item');
+          itemContainer.innerHTML = `
+            <img src="${data.img_1}" alt="${data.name}" />
+            <div class="cart-item-details">
+              <p>${data.name}</p>
+              <p>${item.size}</p>
+              <p>${item.quantity}</p>
+            </div>
+          `;
+          cartItemsContainer.appendChild(itemContainer);
+        })
+        .catch(error => console.log(error));
+    });
+  }
+
+  displayCartItems();
+
+
+
+
+
+
+
+
+  </script>
+    <script src="/script/template.js"></script>
+  
+
 </body>
 
 </html>
