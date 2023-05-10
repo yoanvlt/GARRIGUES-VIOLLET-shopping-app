@@ -1,3 +1,4 @@
+
 let activeFilters = [];
 let allOptions = ['tee', 'longsleeve', 'hoodie', 'crewneck', 'jeans', 'shorts'];
 
@@ -32,6 +33,49 @@ function Display(option) {
 }
 
 
+let activeColorFilters = [];
+
+function DisplayColor(color) {
+  let index = activeColorFilters.indexOf(color);
+
+  if (index > -1) {
+    activeColorFilters.splice(index, 1);
+    document.getElementById(color).checked = false;
+  } else {
+    activeColorFilters.push(color);
+    document.getElementById(color).checked = true;
+  }
+
+  displayFilteredItems();
+}
+
+let priceSort = null;  // 'croissant' or 'decroissant'
+
+function DisplayPrice(sortOrder) {
+  if (sortOrder == 'croissant' || sortOrder == 'decroissant') {
+    priceSort = sortOrder;
+    document.getElementById(sortOrder).checked = true;
+    document.getElementById(sortOrder == 'croissant' ? 'decroissant' : 'croissant').checked = false;
+  } else {
+    priceSort = null;
+  }
+
+  displayFilteredItems();
+}
+
+// Add an event listener to the '+' button to toggle the display of the color and price options
+document.getElementById("toggleFilters").addEventListener("click", function() {
+  let extraFilters = document.getElementById("extraFilters");
+  if (extraFilters.classList.contains("hidden")) {
+    extraFilters.classList.remove("hidden");
+  } else {
+    extraFilters.classList.add("hidden");
+  }
+});
+
+// Other JS code...
+
+
 function displayFilteredItems() {
   var container = document.getElementById("container");
   container.innerHTML = "";
@@ -39,8 +83,16 @@ function displayFilteredItems() {
   fetch("http://localhost:3000/stussy")
     .then((response) => response.json())
     .then((data) => {
+      // If a price sort order is set, sort the data accordingly
+      if (priceSort == 'croissant') {
+        data.sort((a, b) => a.price - b.price);
+      } else if (priceSort == 'decroissant') {
+        data.sort((a, b) => b.price - a.price);
+      }
+
       data.forEach((item) => {
-        if (activeFilters.includes(item.class)) {
+        if ((activeFilters.includes(item.class) || activeFilters.length == 0) &&
+            (activeColorFilters.includes(item.color) || activeColorFilters.length == 0)) {
           var div = document.createElement("div");
           div.className = "item";
 
@@ -75,6 +127,8 @@ function displayFilteredItems() {
       });
     });
 }
+
+
 
 function displayAllItems() {
   var container = document.getElementById("container");

@@ -32,6 +32,7 @@
     <div id="categories-shop">
         <form>
             <div>
+              <button type="button" id="toggleFilters">+</button>
               <input type="checkbox" id="all" name="choix" value="option1" onclick="Display(1)" checked >
               <label for="all">ALL</label>
             </div>
@@ -60,7 +61,40 @@
               <label for="shorts">SHORTS</label>
             </div>
           </form>
-          
+          <div id="extraFilters" class="hidden">
+            <form>
+              <div>
+                <input type="checkbox" id="BLACK" name="choix" value="option1" onclick="DisplayColor('BLACK')">
+                <label for="BLACK">BLACK</label>
+              </div>
+              <div>
+                <input type="checkbox" id="WHITE" name="choix" value="option2" onclick="DisplayColor('WHITE')">
+                <label for="WHITE">WHITE</label>
+              </div>
+              <div>
+                <input type="checkbox" id="BLUE" name="choix" value="option3" onclick="DisplayColor('BLUE')">
+                <label for="BLUE">BLUE</label>
+              </div>
+              <div>
+                <input type="checkbox" id="YELLOW" name="choix" value="option4" onclick="DisplayColor('YELLOW')">
+                <label for="YELLOW">YELLOW</label>
+              </div>
+              <div>
+                <input type="checkbox" id="ORANGE" name="choix" value="option5" onclick="DisplayColor('ORANGE')">
+                <label for="ORANGE">ORANGE</label>
+              </div>
+            </form>
+            <form>
+              <div>
+                <input type="checkbox" id="croissant" name="choix" value="option1" onclick="DisplayPrice('croissant')">
+                <label for="croissant">CROISSANT</label><br>
+              </div>
+              <div>
+                <input type="checkbox" id="decroissant" name="choix" value="option2" onclick="DisplayPrice('decroissant')">
+                <label for="decroissant">DECROISSANT</label><br>
+              </div>  
+            </form>
+          </div>   
     </div>
 
   <div id="container"></div>

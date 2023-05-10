@@ -12,6 +12,7 @@ body {
 
 #categories-shop {
     display: flex;
+    flex-direction: column;
     margin-top: 20px;
     margin-left: 11px;
 }
@@ -21,16 +22,15 @@ body {
     background-color: white;
 }
 
-input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-  }
+input[type=checkbox] {
+  display: none;
+}
   label {
     display: inline-block;
     padding: 5px 5px;
     cursor: pointer;
   }
-  input[type="radio"]:checked + label {
+  input[type="checkbox"]:checked + label {
     background-color: #fff;
   }
 
@@ -39,10 +39,10 @@ input[type="radio"] {
     margin-right: 10px;
   }
 
-  input[type="radio"]:checked + label {
+  input[type="checkbox"]:checked + label {
     color: #727272;
   }
-  input[type="radio"]:checked + label:hover {
+  input[type="checkbox"]:checked + label:hover {
     color: #727272;
   }
 
@@ -69,6 +69,12 @@ input[type="radio"] {
     font-size: 14px; 
   }
   
+/* Add a CSS rule to hide elements with the 'hidden' class */
+.hidden {
+  display: none;
+}
+
+
   @media screen and (max-width: 600px) {
     .item {
       width: calc(100%  - 10px); 
