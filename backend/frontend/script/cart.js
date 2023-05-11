@@ -65,14 +65,17 @@ function displayCartItems() {
   const cartItemsContainer = document.querySelector('.cart-items');
   const cartTotal = document.querySelector('.cart-price');
   cartItemsContainer.innerHTML = '';
-  cartItems.forEach(item => {
-    fetch(`http://localhost:3000/shop/${item.id}`)
+  let totalPrice = 0;
+
+  Promise.all(cartItems.map(item => {
+    return fetch(`http://localhost:3000/shop/${item.id}`)
       .then(response => response.json())
       .then(data => {
         const itemContainer = document.createElement('div');
         itemContainer.classList.add('cart-item');
 
         const itemPrice = data.promo !== 0 ? data.promo : data.price;
+        totalPrice += itemPrice * item.quantity;
 
         itemContainer.innerHTML = `
           <img src="${data.img_1}" alt="${data.name}" />
@@ -85,10 +88,6 @@ function displayCartItems() {
         `;
         cartItemsContainer.appendChild(itemContainer);
 
-        const totalPrice = cartItems.reduce((acc, item) => {
-          return acc + item.quantity * itemPrice;
-        }, 0);
-        cartTotal.innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
         const deleteItem = document.createElement('button');
         deleteItem.classList.add('delete-item');
         deleteItem.textContent = 'X';
@@ -101,13 +100,16 @@ function displayCartItems() {
           calculateAndDisplayTotal(); 
         });
         
-        
         itemContainer.appendChild(deleteItem);
-      })
-      .catch(error => console.log(error));
-  });
+      });
+  }))
+  .then(() => {
+    cartTotal.innerHTML = `<h2> Total: ${totalPrice}€ </h2>`;
+  })
+  .catch(error => console.log(error));
 }
 
 displayCartItems();
+
 
 
